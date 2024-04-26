@@ -126,7 +126,11 @@ public class DangNhapFrame extends javax.swing.JFrame {
         passwordInput = passwordTextField.getPassword();
         if((username.equals(userInput)) && (Arrays.equals(password, passwordInput))){
             JOptionPane.showMessageDialog(null, "Bạn đã nhập chuẩn.","",JOptionPane.PLAIN_MESSAGE);
-            //new MainFrame().setVisible(true);
+            try {
+                new Menu().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(DangNhapFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
             dispose();
         }
         else {
