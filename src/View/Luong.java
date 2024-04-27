@@ -10,6 +10,7 @@ package View;
  */
 public class Luong extends javax.swing.JPanel {
 
+    public static float mucLuongBinhQuan1N1H = -2f;
     /**
      * Creates new form Phanmem
      */
@@ -28,7 +29,7 @@ public class Luong extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         tongLuongField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -39,7 +40,7 @@ public class Luong extends javax.swing.JPanel {
 
         jLabel1.setText("BẢNG TÍNH LƯƠNG BÌNH QUÂN / NGƯỜI/ GIỜ");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", null, null, null},
                 {"2", null, null, null},
@@ -48,9 +49,17 @@ public class Luong extends javax.swing.JPanel {
             new String [] {
                 "STT", "Mức lương/tháng (đồng)", "Số lượng cán bộ", "Tổng (đồng)"
             }
-        ));
-        jTable1.setRowHeight(36);
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        table1.setRowHeight(36);
+        jScrollPane1.setViewportView(table1);
 
         jLabel2.setText("Tổng chi lương/tháng");
 
@@ -59,6 +68,11 @@ public class Luong extends javax.swing.JPanel {
         jLabel4.setText("Mức lượng bình quân 1 người/1 giờ");
 
         jButton1.setText("Tính toán");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -114,6 +128,42 @@ public class Luong extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+         int mucLuongThang1 = (int) table1.getModel().getValueAt(0, 1);
+         int soLuongCanBo1 = (int) table1.getModel().getValueAt(0, 2);
+         int tongluong1 = mucLuongThang1*soLuongCanBo1;
+        table1.getModel().setValueAt(tongluong1, 0, 3);
+
+         
+                 
+        int mucLuongThang2 = (int)  table1.getModel().getValueAt(1, 1);        
+        int soLuongCanBo2 = (int) table1.getModel().getValueAt(1, 2);
+                 int tongluong2 =mucLuongThang2*soLuongCanBo2;
+
+         table1.getModel().setValueAt(tongluong2, 1, 3);
+
+        int mucLuongThang3 = (int) table1.getModel().getValueAt(2, 1);
+        int soLuongCanBo3 = (int) table1.getModel().getValueAt(2, 2);
+                 int tongluong3 = mucLuongThang3*soLuongCanBo3;
+
+        table1.getModel().setValueAt(tongluong3, 2, 3);
+        
+        int tongLuong = tongluong1 + tongluong2 + tongluong3;
+        tongLuongField.setText(""+tongLuong);
+
+        int luong = tongLuong / (soLuongCanBo1 + soLuongCanBo2 + soLuongCanBo3);
+        luongField.setText("" + luong);
+        
+        mucLuongBinhQuan1N1H = (float)luong/20/8;
+        luongTBField.setText("" + mucLuongBinhQuan1N1H);
+    
+        
+        System.out.println("diem tata ca: " + mucLuongBinhQuan1N1H);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -122,9 +172,9 @@ public class Luong extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField luongField;
     private javax.swing.JTextField luongTBField;
+    private javax.swing.JTable table1;
     private javax.swing.JTextField tongLuongField;
     // End of variables declaration//GEN-END:variables
 }

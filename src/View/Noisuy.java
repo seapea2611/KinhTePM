@@ -10,6 +10,7 @@ package View;
  */
 public class Noisuy extends javax.swing.JPanel {
 
+    public static double noisuythoigianlaodong = -1;
     /**
      * Creates new form Noisuy
      */
@@ -28,14 +29,15 @@ public class Noisuy extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         noisuyFiled = new javax.swing.JTextField();
+        button = new javax.swing.JButton();
 
         jLabel1.setText("Tính toán hệ số tác động môi trường và nhóm làm việc, hệ số phức tạp về môi trường, xác định độ ổn định kinh nghiệm và nội suy thời gian lao động (P)");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"I", "Hệ số tác động môi trường và nhóm làm việc (EFW)", null, null, null, null},
                 {null, "Đánh giá cho từng thành viên", null, null, null, null},
@@ -54,59 +56,126 @@ public class Noisuy extends javax.swing.JPanel {
             new String [] {
                 "TT", "Các hệ số tác động môi trường", "Trọng số", "Giá trị xếp hạng", "Kết quả", "Độ ổn định kinh nghiệm"
             }
-        ));
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        table1.setRowHeight(30);
+        jScrollPane1.setViewportView(table1);
 
         jLabel2.setText("IV");
 
         jLabel3.setText("Nội suy thời gian lao động (P)");
 
+        button.setText("Tính toán");
+        button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(196, 196, 196))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addGap(26, 26, 26)
-                        .addComponent(noisuyFiled))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel3)
+                                .addGap(26, 26, 26)
+                                .addComponent(noisuyFiled))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(196, 196, 196))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(button)
+                                .addGap(58, 58, 58))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addGap(13, 13, 13)
+                .addComponent(button)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(noisuyFiled))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(noisuyFiled, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
+        // TODO add your handling code here:
+        
+          double ketqua1 = 0;
+          double hesophuctapvemoitruong = 0;
+          double doondinhkinhnghiem = 0;
+        for (int i = 2; i <= 10; i++) {
+            if( i == 7) {
+                continue;
+            }
+               
+            double trongso = (double) table1.getModel().getValueAt(i, 2);
+            double giatrixephang = (double) table1.getModel().getValueAt(i, 3);
+            double doondinhkinhnghiemTemp = (double) table1.getModel().getValueAt(i, 5);
+
+            double ketqua = trongso * giatrixephang;
+            ketqua1 = ketqua1 + ketqua;
+            hesophuctapvemoitruong = hesophuctapvemoitruong + trongso;
+            
+            doondinhkinhnghiem = doondinhkinhnghiem + doondinhkinhnghiemTemp;
+            
+            table1.getModel().setValueAt(ketqua, i, 4);
+        }
+        table1.getModel().setValueAt(ketqua1, 0, 4);
+
+        hesophuctapvemoitruong = hesophuctapvemoitruong / 8;
+        table1.getModel().setValueAt(hesophuctapvemoitruong, 11, 4);
+
+        table1.getModel().setValueAt(doondinhkinhnghiem, 12, 5);
+        
+        int  p = 0;
+        if(doondinhkinhnghiem >= 3) {
+            p = 20;
+        } else if (doondinhkinhnghiem >= 1) {
+            p = 32;
+        } else if(doondinhkinhnghiem < 1) {
+            p = 48;
+        }
+        noisuyFiled.setText("" + p);
+    }//GEN-LAST:event_buttonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton button;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField noisuyFiled;
+    private javax.swing.JTable table1;
     // End of variables declaration//GEN-END:variables
 }

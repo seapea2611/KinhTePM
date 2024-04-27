@@ -10,6 +10,8 @@ package View;
  */
 public class KTCN extends javax.swing.JPanel {
 
+   public static double heSoPhucTap = -1;
+    
     /**
      * Creates new form KTCN
      */
@@ -27,14 +29,14 @@ public class KTCN extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"I", "Hệ số KT-CN (TFW)", null, null, null, null},
                 {"1", "Hệ thống phân tán ", null, null, null, null},
@@ -54,9 +56,17 @@ public class KTCN extends javax.swing.JPanel {
             new String [] {
                 "TT", "Các hệ số                                                     0      ", "Trọng sô", "Giá trị xếp hạng", "Kết quả", "Ghi chú"
             }
-        ));
-        jTable1.setRowHeight(25);
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        table1.setRowHeight(25);
+        jScrollPane1.setViewportView(table1);
 
         jLabel1.setText("Bảng tính toán hệ số phức tạp kỹ thuật-công nghệ");
 
@@ -71,6 +81,11 @@ public class KTCN extends javax.swing.JPanel {
         });
 
         jButton1.setText("Tính toán");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -123,6 +138,25 @@ public class KTCN extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        double ketqua1 = 0;
+        for (int i = 1; i <= 13; i++) {
+            double trongso = (double) table1.getModel().getValueAt(i, 2);
+            double giatrixephang = (double) table1.getModel().getValueAt(i, 3);
+            double ketqua = trongso * giatrixephang;
+            ketqua1 = ketqua1 + ketqua;
+            table1.getModel().setValueAt(ketqua, i, 4);
+        }
+        
+        table1.getModel().setValueAt(ketqua1, 0, 4);
+
+        heSoPhucTap = 0.6 + 0.01 * ketqua1;
+        jTextField1.setText("" + heSoPhucTap);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -130,7 +164,7 @@ public class KTCN extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTable table1;
     // End of variables declaration//GEN-END:variables
 }

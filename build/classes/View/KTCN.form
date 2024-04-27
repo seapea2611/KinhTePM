@@ -78,7 +78,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTable1">
+        <Component class="javax.swing.JTable" name="table1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="6" rowCount="14">
@@ -114,13 +114,50 @@
                   <Data value="Cung c&#x1ea5;p truy nh&#x1ead;p tr&#x1ef1;c ti&#x1ebf;p t&#x1edb;i c&#xe1;c ph&#x1ea7;n m&#x1ec1;m c&#x1ee7;a c&#xe1;c h&#xe3;ng th&#x1ee9; ba "/>
                   <Data value="Y&#xea;u c&#x1ea7;u ph&#x1b0;&#x1a1;ng ti&#x1ec7;n &#x111;&#xe0;o t&#x1ea1;o &#x111;&#x1eb7;c bi&#x1ec7;t cho ng&#x1b0;&#x1edd;i s&#x1eed; d&#x1ee5;ng "/>
                 </Column>
-                <Column editable="true" title="Tr&#x1ecd;ng s&#xf4;" type="java.lang.Object"/>
-                <Column editable="true" title="Gi&#xe1; tr&#x1ecb; x&#x1ebf;p h&#x1ea1;ng" type="java.lang.Object"/>
-                <Column editable="true" title="K&#x1ebf;t qu&#x1ea3;" type="java.lang.Object"/>
+                <Column editable="true" title="Tr&#x1ecd;ng s&#xf4;" type="java.lang.Double"/>
+                <Column editable="true" title="Gi&#xe1; tr&#x1ecb; x&#x1ebf;p h&#x1ea1;ng" type="java.lang.Double"/>
+                <Column editable="true" title="K&#x1ebf;t qu&#x1ea3;" type="java.lang.Double"/>
                 <Column editable="true" title="Ghi ch&#xfa;" type="java.lang.Object"/>
               </Table>
             </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
+            </Property>
             <Property name="rowHeight" type="int" value="25"/>
+            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -149,6 +186,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="T&#xed;nh to&#xe1;n"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

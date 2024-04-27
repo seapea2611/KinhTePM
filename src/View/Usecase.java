@@ -10,6 +10,7 @@ package View;
  */
 public class Usecase extends javax.swing.JPanel {
 
+    public static double diemTungLoaiSD = -3;
     /**
      * Creates new form Usecase
      */
@@ -27,13 +28,13 @@ public class Usecase extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(640, 450));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "B", null, null},
                 {null, "Đơn giản", null, null},
@@ -47,27 +48,32 @@ public class Usecase extends javax.swing.JPanel {
                 {null, "Đơn giản", null, null},
                 {null, "Trung bình", null, null},
                 {null, "Phức tạp", null, null},
-                {null, "Cộng 1+2+3", "TBF", null}
+                {null, "Cộng 1+2+3", null, null}
             },
             new String [] {
                 "STT", "Loại", "Số trường hợp sử dụng", "Điểm của từng loại trường hợp sử dụng"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jTable1.setRowHeight(27);
-        jScrollPane1.setViewportView(jTable1);
+        table1.setRowHeight(27);
+        jScrollPane1.setViewportView(table1);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Bảng tính toán điểm các trường hợp sử dụng");
 
         jButton1.setText("Tính toán");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -88,7 +94,7 @@ public class Usecase extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -96,11 +102,79 @@ public class Usecase extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+       int b1 = 0; int b2 = 0;
+       int dongianb1 = (int) table1.getModel().getValueAt(1, 2);
+       int trungbinhb1 = (int) table1.getModel().getValueAt(2, 2);
+       int phuctapb1 = (int) table1.getModel().getValueAt(3, 2);
+      
+       b1 = dongianb1 + phuctapb1 + trungbinhb1;
+       table1.getModel().setValueAt(b1, 0, 2);
+       
+       int dongianb2 = dongianb1 * 5;
+       int trungbinhb2 = trungbinhb1 * 10;
+       int phuctapb2 = phuctapb1 * 15;
+       
+       table1.getModel().setValueAt(dongianb2, 1, 3);
+       table1.getModel().setValueAt(trungbinhb2, 2, 3);
+       table1.getModel().setValueAt(phuctapb2, 3, 3);
+       
+        b2 = dongianb2 + phuctapb2 + trungbinhb2;
+        table1.getModel().setValueAt(b2, 0, 3);
+       
+       int m1 = 0; int m2 = 0;
+       int dongianm1 = (int) table1.getModel().getValueAt(5, 2);
+       int trungbinhm1 = (int) table1.getModel().getValueAt(6,2);
+       int phuctapm1 = (int) table1.getModel().getValueAt(7,2);
+       
+       m1 = dongianm1+ trungbinhm1 + phuctapm1;
+       table1.getModel().setValueAt(m1, 4, 2);
+       
+   
+       int dongianm2 = dongianm1 * 6;
+       int trungbinhm2 = trungbinhm1 * 12 ;
+       int phuctapm2 = phuctapm1 * 18 ;
+       
+       table1.getModel().setValueAt(dongianm2, 5,3);
+       table1.getModel().setValueAt(trungbinhm2, 6,3);
+        table1.getModel().setValueAt(phuctapm2, 7,3)  ;  
+        
+        
+        m2 = dongianm2 + trungbinhm2 + phuctapm2;
+        table1.getModel().setValueAt(m2, 4,3)  ;  
+
+       
+       int t1 = 0; double t2 = 0;
+       int dongiant1 = (int) table1.getModel().getValueAt(9,2);
+       int trungbinht1 = (int) table1.getModel().getValueAt(10,2);
+       int phuctapt1 = (int) table1.getModel().getValueAt(11,2);
+       
+       t1 = dongiant1 + trungbinht1 + phuctapt1;
+                 table1.getModel().setValueAt(t1, 8,2);
+
+       
+       double dongiant2 = dongiant1 * 7.5;
+       double trungbinht2 = trungbinht1 * 15;
+       double phuctapt2 = phuctapt1 * 22.5;
+
+       table1.getModel().setValueAt(dongiant2, 9,3);
+        table1.getModel().setValueAt(trungbinht2,10,3);
+         table1.getModel().setValueAt(phuctapt2, 11,3);
+         
+         t2 = dongiant2 + trungbinht2 + phuctapt2;
+          table1.getModel().setValueAt(t2, 8,3);
+          
+          diemTungLoaiSD = b2 + m2 + t2;
+                    table1.getModel().setValueAt(diemTungLoaiSD, 12,3);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table1;
     // End of variables declaration//GEN-END:variables
 }

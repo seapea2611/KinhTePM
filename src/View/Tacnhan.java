@@ -10,6 +10,8 @@ package View;
  */
 public class Tacnhan extends javax.swing.JPanel {
 
+    public static int diemTatCa = -1;
+    
     /**
      * Creates new form Tacnhan
      */
@@ -28,14 +30,14 @@ public class Tacnhan extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(640, 450));
 
         jLabel1.setText("Bảng tính toán điểm các tác nhân (actors) tương tác");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"1", "Đơn giản ", "Thuộc loại giao diện của chương trình", null, null, null},
                 {"2", "Trung bình ", "Giao diện tương tác hoặc phục vụ một giao thức hoạt động", null, null, null},
@@ -45,11 +47,24 @@ public class Tacnhan extends javax.swing.JPanel {
             new String [] {
                 "TT", "Loại Actor", "Mô tả", "Số tác nhân", "Điểm của từng loại tác nhân", "Ghi chú"
             }
-        ));
-        jTable1.setRowHeight(50);
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        table1.setRowHeight(50);
+        jScrollPane1.setViewportView(table1);
 
         jButton1.setText("Tính toán");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,11 +96,28 @@ public class Tacnhan extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int soTacNhan1 = (int) table1.getModel().getValueAt(0, 3);
+        int soTacNhan2 = (int)  table1.getModel().getValueAt(1, 3);
+        int soTacNhan3 = (int) table1.getModel().getValueAt(2, 3);
+        int diemtungLoai1 = (int) table1.getModel().getValueAt(0, 4);
+        int diemtungLoai2 = (int) table1.getModel().getValueAt(1, 4);
+        int diemtungLoai3 = (int) table1.getModel().getValueAt(2, 4);
+        
+        diemTatCa = soTacNhan1*diemtungLoai1 + soTacNhan2*diemtungLoai2 + soTacNhan3 * diemtungLoai3;
+        
+        table1.getModel().setValueAt(diemTatCa, 3, 4);
+
+        
+        System.out.println("diem tata ca: " + diemTatCa);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table1;
     // End of variables declaration//GEN-END:variables
 }
