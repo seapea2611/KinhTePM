@@ -4,6 +4,13 @@
  */
 package View;
 
+import static View.KTCN.heSoPhucTap;
+import static View.Luong.mucLuongBinhQuan1N1H;
+import static View.Noisuy.noisuythoigianlaodong;
+import static View.Noisuy.noisuythoigianlaodong2;
+import static View.Tacnhan.diemTatCa;
+import static View.Usecase.diemTungLoaiSD;
+
 /**
  *
  * @author seape
@@ -27,11 +34,11 @@ public class Phanmem extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {"I", "Tính điểm trường hợp sử dụng (Use-case)", null, null, null},
                 {"1", "Điểm Actor (TAW)", null, null, null},
@@ -49,13 +56,26 @@ public class Phanmem extends javax.swing.JPanel {
             new String [] {
                 "TT", "Hạng mục", "Diễn giải", "Giá trị", "Ghi chú"
             }
-        ));
-        jTable1.setRowHeight(36);
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        table1.setRowHeight(36);
+        jScrollPane1.setViewportView(table1);
 
         jLabel1.setText("BẢNG XÁC ĐỊNH GIÁ PHẦN MỀM");
 
         jButton2.setText("Tính toán");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -87,11 +107,30 @@ public class Phanmem extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+     
+        table1.getModel().setValueAt(diemTatCa, 1, 3);
+        table1.getModel().setValueAt(diemTungLoaiSD, 2, 3);
+        
+        table1.getModel().setValueAt((double)diemTatCa + diemTungLoaiSD, 3, 3);
+        table1.getModel().setValueAt(heSoPhucTap, 4, 3);
+        table1.getModel().setValueAt(noisuythoigianlaodong2, 5, 3);
+        double col6 = ((double)diemTatCa + diemTungLoaiSD) * heSoPhucTap * noisuythoigianlaodong2;
+        table1.getModel().setValueAt(col6, 6, 3);
+        table1.getModel().setValueAt(noisuythoigianlaodong, 7, 3);
+        table1.getModel().setValueAt((10/(double)6) * col6, 8, 3);
+        table1.getModel().setValueAt((double)mucLuongBinhQuan1N1H, 9, 3);
+        table1.getModel().setValueAt(noisuythoigianlaodong * 1.4 * ((10/(double)6) * col6) * (double)mucLuongBinhQuan1N1H, 10, 3);
+        
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table1;
     // End of variables declaration//GEN-END:variables
 }

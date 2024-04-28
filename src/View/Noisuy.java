@@ -11,6 +11,8 @@ package View;
 public class Noisuy extends javax.swing.JPanel {
 
     public static double noisuythoigianlaodong = -1;
+    public static double noisuythoigianlaodong2 = -1;
+
     /**
      * Creates new form Noisuy
      */
@@ -153,6 +155,8 @@ public class Noisuy extends javax.swing.JPanel {
         table1.getModel().setValueAt(ketqua1, 0, 4);
 
         hesophuctapvemoitruong = hesophuctapvemoitruong / 8;
+        noisuythoigianlaodong2 = hesophuctapvemoitruong;
+        
         table1.getModel().setValueAt(hesophuctapvemoitruong, 11, 4);
 
         table1.getModel().setValueAt(doondinhkinhnghiem, 12, 5);
@@ -165,6 +169,7 @@ public class Noisuy extends javax.swing.JPanel {
         } else if(doondinhkinhnghiem < 1) {
             p = 48;
         }
+        noisuythoigianlaodong = p;
         noisuyFiled.setText("" + p);
     }//GEN-LAST:event_buttonActionPerformed
 
